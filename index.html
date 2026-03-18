@@ -1,10 +1,917 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Rithesh Ozario Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rithesh Ozario - Creative Director | 3D Animation & VFX</title>
+    <meta name="description" content="Creative Director specializing in 3D animation, VFX, AR/VR/XR production. 20+ years delivering transformative visual solutions for Fortune 500 brands across MENA, GCC & Asia.">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a0e27;
+            --secondary: #1a1f3a;
+            --accent: #00d9ff;
+            --accent-2: #ff006e;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b5c1;
+            --border: #2a2f4a;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Cursor */
+        body {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="%2300d9ff" stroke-width="2"/><circle cx="12" cy="12" r="2" fill="%2300d9ff"/></svg>') 12 12, auto;
+        }
+
+        a { cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="%23ff006e" stroke-width="2"/><circle cx="12" cy="12" r="2" fill="%23ff006e"/></svg>') 12 12, pointer; }
+
+        /* Header/Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--accent);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a.active::after,
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        main {
+            margin-top: 80px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+            animation: slideInDown 0.8s ease-out;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content .accent-text {
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            animation: slideInUp 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideInUp 0.8s ease-out 0.4s both;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            color: var(--primary);
+            box-shadow: 0 0 30px rgba(0, 217, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 50px rgba(0, 217, 255, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent);
+            color: var(--primary);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        }
+
+        /* Portfolio Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .portfolio-item {
+            background: var(--secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            height: 100%;
+        }
+
+        .portfolio-item:hover {
+            border-color: var(--accent);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 217, 255, 0.2);
+        }
+
+        .portfolio-media {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(255, 0, 110, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .portfolio-media img,
+        .portfolio-media video,
+        .portfolio-media iframe {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .portfolio-content {
+            padding: 2rem;
+        }
+
+        .portfolio-category {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .portfolio-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: rgba(0, 217, 255, 0.1);
+            color: var(--accent);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* About Section */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .competencies {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .competency-item {
+            background: var(--secondary);
+            border: 1px solid var(--border);
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--secondary);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            border-color: var(--accent);
+            box-shadow: 0 10px 40px rgba(0, 217, 255, 0.15);
+        }
+
+        .skill-category.ai-tools {
+            border-color: var(--accent-2);
+            background: linear-gradient(135deg, var(--secondary), rgba(255, 0, 110, 0.05));
+        }
+
+        .skill-category.ai-tools:hover {
+            box-shadow: 0 10px 40px rgba(255, 0, 110, 0.2);
+        }
+
+        .skill-category h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .skill-list li::before {
+            content: '→ ';
+            color: var(--accent);
+            margin-right: 0.5rem;
+            font-weight: bold;
+        }
+
+        /* AI Innovation Section */
+        .ai-innovation-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .ai-card {
+            background: linear-gradient(135deg, rgba(255, 0, 110, 0.1), rgba(0, 217, 255, 0.1));
+            border: 2px solid var(--border);
+            border-left: 4px solid var(--accent-2);
+            padding: 2rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 0, 110, 0.1), transparent);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .ai-card:hover {
+            border-color: var(--accent-2);
+            border-left-color: var(--accent);
+            background: linear-gradient(135deg, rgba(255, 0, 110, 0.15), rgba(0, 217, 255, 0.15));
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(255, 0, 110, 0.2);
+        }
+
+        .ai-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .ai-card h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ai-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Resume Section */
+        .resume-container {
+            background: var(--secondary);
+            border: 1px solid var(--border);
+            padding: 3rem;
+            border-radius: 12px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .resume-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .resume-info p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .resume-download {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            background: linear-gradient(135deg, var(--secondary) 0%, rgba(0, 217, 255, 0.05) 100%);
+            border: 1px solid var(--border);
+            padding: 3rem;
+            border-radius: 12px;
+            max-width: 600px;
+        }
+
+        .contact-info {
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 217, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .contact-item a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            border-top: 1px solid var(--border);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .about-container,
+            .resume-container {
+                grid-template-columns: 1fr;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 2rem 1rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1>Portfolio Coming Soon</h1>
-  <p>Building something amazing...</p>
+    <!-- Navigation -->
+    <header>
+        <nav>
+            <div class="logo">RO</div>
+            <ul>
+                <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Creative Director<br><span class="accent-text">3D Animation & VFX</span><br><span style="font-size: 1.8rem; opacity: 0.8;">AI Enthusiast & Innovator</span></h1>
+                <p>20+ years delivering transformative visual solutions for Fortune 500 brands across MENA, GCC & Asia. Specializing in 3D/2D Animation, VFX, AR/VR/XR Production, and Creative Leadership. Passionate about leveraging AI as a powerful creative tool to accelerate design workflows, generate stunning visual assets, and unlock unprecedented creative possibilities.</p>
+                <div class="cta-buttons">
+                    <a href="#portfolio" class="btn btn-primary">View Work</a>
+                    <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio">
+            <h2 class="section-title">Featured Work</h2>
+            <div class="portfolio-grid">
+                <!-- TEMPLATE: Copy this block to add more projects -->
+                <div class="portfolio-item">
+                    <div class="portfolio-media">
+                        <!-- ADD YOUR VIDEO/IMAGE URL HERE -->
+                        <video controls>
+                            <source src="your-video-1.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-category">3D Animation</div>
+                        <h3 class="portfolio-title">Project Title</h3>
+                        <p class="portfolio-description">Brief description of the project, client, and impact achieved.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Maya</span>
+                            <span class="tag">VFX</span>
+                            <span class="tag">Animation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-media">
+                        <img src="your-image-1.jpg" alt="Project">
+                    </div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-category">3D Turntable</div>
+                        <h3 class="portfolio-title">3D Product Showcase</h3>
+                        <p class="portfolio-description">Interactive 3D model showcase with full 360° rotation capability.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">3D Model</span>
+                            <span class="tag">Turntable</span>
+                            <span class="tag">Product</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-media">
+                        <img src="your-image-2.jpg" alt="Project">
+                    </div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-category">VFX Compositing</div>
+                        <h3 class="portfolio-title">VFX Campaign</h3>
+                        <p class="portfolio-description">Large-scale VFX compositing for multi-million impression campaign.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Nuke</span>
+                            <span class="tag">Compositing</span>
+                            <span class="tag">VFX</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-container">
+                <div class="about-text">
+                    <h3>Creative Leadership Across 20+ Years</h3>
+                    <p>I'm a Creative Director with proven expertise in leading 3D/2D animation, VFX, and AR/VR/XR production for global Fortune 500 brands. My career spans UAE, Kuwait, Singapore, and India, delivering measurable business impact:</p>
+                    <ul class="competencies">
+                        <li class="competency-item">✦ 45% improvement in campaign performance metrics</li>
+                        <li class="competency-item">✦ 40% YoY creative output growth</li>
+                        <li class="competency-item">✦ $2M+ annual revenue delivery</li>
+                        <li class="competency-item">✦ Regional AR/VR innovation leader</li>
+                        <li class="competency-item">✦ 100% on-time delivery record</li>
+                        <li class="competency-item">✦ High-performing team builder</li>
+                    </ul>
+                </div>
+                <div class="about-text">
+                    <h3>AI-Driven Creative Vision</h3>
+                    <p>Beyond traditional creative tools, I'm an AI enthusiast committed to exploring how artificial intelligence can revolutionize the design and production process. I leverage AI not as a replacement for creativity, but as a powerful accelerator—using generative tools to prototype ideas faster, generate stunning assets, and enhance every stage of the creative pipeline.</p>
+                    <ul class="competencies">
+                        <li class="competency-item">Creative Direction & Strategy</li>
+                        <li class="competency-item">AI-Accelerated Workflows</li>
+                        <li class="competency-item">Production Pipeline Optimization</li>
+                        <li class="competency-item">AR/VR/XR Development</li>
+                        <li class="competency-item">Brand Strategy & Design Systems</li>
+                        <li class="competency-item">Stakeholder Management</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Innovation Section -->
+        <section>
+            <h2 class="section-title">AI-Powered Creative Innovation</h2>
+            <div class="ai-innovation-container">
+                <div class="ai-card">
+                    <div class="ai-icon">🎨</div>
+                    <h3>Accelerated Image & Video Creation</h3>
+                    <p>Leveraging cutting-edge generative AI to rapidly prototype visual concepts, create stunning assets, and produce high-quality imagery that would traditionally take weeks to develop. AI acts as a creative multiplier, enabling faster iteration and more ambitious creative exploration.</p>
+                </div>
+                <div class="ai-card">
+                    <div class="ai-icon">⚡</div>
+                    <h3>Enhanced Design Workflows</h3>
+                    <p>Integrating AI tools into every stage of the design process—from ideation and concept generation to asset refinement and optimization. AI streamlines repetitive tasks, freeing creative energy for strategic thinking and artistic direction.</p>
+                </div>
+                <div class="ai-card">
+                    <div class="ai-icon">🚀</div>
+                    <h3>Next-Gen Creative Possibilities</h3>
+                    <p>Exploring the frontier of AI-assisted creativity to unlock unprecedented visual possibilities. From AI-generated base assets refined through professional VFX pipelines to AI-enhanced compositing and real-time rendering optimization—transforming how we create.</p>
+                </div>
+            </div>
+        </section>
+        <section id="skills">
+            <h2 class="section-title">Technical Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>3D Software</h3>
+                    <ul class="skill-list">
+                        <li>Maya</li>
+                        <li>3ds Max</li>
+                        <li>Cinema 4D</li>
+                        <li>Houdini</li>
+                        <li>ZBrush</li>
+                        <li>Unreal Engine</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Compositing & VFX</h3>
+                    <ul class="skill-list">
+                        <li>Nuke</li>
+                        <li>After Effects</li>
+                        <li>Digital Fusion</li>
+                        <li>Color Grading</li>
+                        <li>Motion Graphics</li>
+                        <li>Rotoscoping</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Rendering & Design</h3>
+                    <ul class="skill-list">
+                        <li>Arnold</li>
+                        <li>RenderMan</li>
+                        <li>V-Ray</li>
+                        <li>Octane</li>
+                        <li>Substance Painter</li>
+                        <li>Keyshot</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Immersive Tech</h3>
+                    <ul class="skill-list">
+                        <li>AR/VR Development</li>
+                        <li>Spark AR</li>
+                        <li>Zapworks</li>
+                        <li>XR Production</li>
+                        <li>Interactive Design</li>
+                        <li>WebGL</li>
+                    </ul>
+                </div>
+                <div class="skill-category ai-tools">
+                    <h3>🤖 AI Creative Tools</h3>
+                    <ul class="skill-list">
+                        <li>Generative AI for Image/Video Creation</li>
+                        <li>AI-Assisted Design Workflows</li>
+                        <li>Text-to-Image Models</li>
+                        <li>Video Synthesis & Enhancement</li>
+                        <li>AI-Powered Asset Generation</li>
+                        <li>Creative Process Acceleration</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resume Section -->
+        <section>
+            <div class="resume-container">
+                <div class="resume-info">
+                    <h3>Download My Resume</h3>
+                    <p>Get a detailed overview of my experience, achievements, and technical expertise.</p>
+                    <div class="resume-download">
+                        <a href="Rithesh_Ozario_CD2026_Resume_Final.pdf" class="btn btn-primary" download>Download PDF</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <strong>Location</strong><br>
+                            Dubai, UAE
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <strong>Phone</strong><br>
+                            <a href="tel:+971504860824">+971-50-4860824</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div>
+                            <strong>Email</strong><br>
+                            <a href="mailto:ozario@yahoo.com">ozario@yahoo.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">💼</div>
+                        <div>
+                            <strong>LinkedIn</strong><br>
+                            <a href="https://linkedin.com/in/rithesh-ozario" target="_blank">linkedin.com/in/rithesh-ozario</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Rithesh Ozario. All rights reserved. | Creative Director | 3D Animation & VFX Specialist</p>
+    </footer>
+
+    <script>
+        // Smooth scroll navigation active state
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Scroll reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.portfolio-item, .skill-category, .competency-item').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
