@@ -4,18 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rithesh Ozario - Creative Director | 3D Animation & VFX</title>
-    <meta name="description" content="Creative Director specializing in 3D animation, VFX, AR/VR/XR production. 20+ years delivering transformative visual solutions for Fortune 500 brands across MENA, GCC & Asia.">
     
-    <!-- Favicon - Modern & Legacy Support -->
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="icon" href="/favicon.ico" sizes="32x32" type="image/x-icon">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-    <meta name="theme-color" content="#0a0e27">>
-    
-    <!-- GLightbox - Lightbox Library for Images & Videos -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     
     <style>
         * {
@@ -27,13 +18,21 @@
         :root {
             --primary: #0a0e27;
             --secondary: #1a1f3a;
-            --tertiary: #252d47;
             --accent: #00d9ff;
             --accent-2: #ff006e;
-            --text-primary: #ffffff;
-            --text-secondary: #b0b5c1;
-            --text-tertiary: #8a8f9e;
+            --text: #ffffff;
+            --text-muted: #b0b5c1;
             --border: #2a2f4a;
+        }
+
+        body.light-mode {
+            --primary: #ffffff;
+            --secondary: #f5f5f5;
+            --accent: #0066cc;
+            --accent-2: #cc0066;
+            --text: #1a1a1a;
+            --text-muted: #666666;
+            --border: #e0e0e0;
         }
 
         html {
@@ -41,33 +40,34 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0a0e27 100%);
             background-attachment: fixed;
-            color: var(--text-primary);
+            color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
+            transition: background 0.3s ease;
         }
 
-        /* Custom cursor */
-        body {
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="%2300d9ff" stroke-width="2"/><circle cx="12" cy="12" r="2" fill="%2300d9ff"/></svg>') 12 12, auto;
+        body.light-mode {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 50%, #ffffff 100%);
         }
 
-        a { 
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="%23ff006e" stroke-width="2"/><circle cx="12" cy="12" r="2" fill="%23ff006e"/></svg>') 12 12, pointer; 
-        }
-
-        /* Header/Navigation */
+        /* HEADER */
         header {
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
-            background: rgba(10, 14, 39, 0.95);
+            background: rgba(10, 14, 39, 0.98);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border);
             padding: 1rem 2rem;
+            transition: background 0.3s ease;
+        }
+
+        body.light-mode header {
+            background: rgba(255, 255, 255, 0.98);
         }
 
         nav {
@@ -78,144 +78,116 @@
             align-items: center;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--accent), var(--accent-2));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -1px;
-        }
-
-        nav ul {
+        .nav-right {
             display: flex;
-            list-style: none;
+            align-items: center;
             gap: 2rem;
         }
 
-        nav a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        nav a:hover,
-        nav a.active {
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
             color: var(--accent);
         }
 
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s ease;
+        .theme-toggle {
+            width: 50px;
+            height: 28px;
+            background: var(--secondary);
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            padding: 0 3px;
         }
 
-        nav a.active::after,
-        nav a:hover::after {
-            width: 100%;
+        .theme-toggle:hover {
+            border-color: var(--accent);
+        }
+
+        .theme-toggle-circle {
+            width: 22px;
+            height: 22px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: absolute;
+            left: 3px;
+            transition: left 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        body.light-mode .theme-toggle-circle {
+            left: 25px;
         }
 
         main {
             margin-top: 80px;
         }
 
-        /* Hero Section */
+        /* HERO */
         .hero {
-            min-height: 90vh;
+            min-height: calc(100vh - 80px);
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(30px); }
+            padding: 3rem 2rem;
+            text-align: center;
         }
 
         .hero-content {
-            max-width: 900px;
-            text-align: center;
-            position: relative;
-            z-index: 10;
+            max-width: 800px;
         }
 
-        .hero-name {
-            font-size: clamp(3rem, 12vw, 5.5rem);
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
             font-weight: 900;
-            line-height: 1.05;
-            margin-bottom: 0.5rem;
-            letter-spacing: -2px;
-            animation: slideInDown 0.8s ease-out;
+            margin-bottom: 1rem;
+            line-height: 1.2;
         }
 
-        .hero-title {
-            font-size: clamp(1.2rem, 4vw, 1.8rem);
-            font-weight: 600;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            letter-spacing: 0.5px;
-            animation: slideInDown 0.8s ease-out 0.1s both;
-        }
-
-        .hero-content > p {
-            font-size: clamp(0.95rem, 2vw, 1.1rem);
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            line-height: 1.8;
-            animation: slideInUp 0.8s ease-out 0.2s both;
-        }
-
-        @keyframes slideInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .accent-text {
-            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        .name-gradient {
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-description {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
         }
 
         .cta-buttons {
@@ -223,173 +195,119 @@
             gap: 1.5rem;
             justify-content: center;
             flex-wrap: wrap;
-            animation: slideInUp 0.8s ease-out 0.3s both;
         }
 
         .btn {
-            padding: 1rem 2.5rem;
-            border: none;
+            padding: 0.85rem 2.2rem;
             border-radius: 50px;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 600;
+            border: none;
             cursor: pointer;
-            transition: all 0.3s ease;
             text-decoration: none;
+            transition: all 0.3s ease;
             display: inline-block;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
             color: var(--primary);
-            box-shadow: 0 0 30px rgba(0, 217, 255, 0.4);
+            box-shadow: 0 8px 20px rgba(0, 217, 255, 0.3);
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 0 50px rgba(0, 217, 255, 0.6);
+            box-shadow: 0 12px 30px rgba(0, 217, 255, 0.4);
         }
 
         .btn-secondary {
-            background: transparent;
             border: 2px solid var(--accent);
             color: var(--accent);
+            background: transparent;
         }
 
         .btn-secondary:hover {
-            background: var(--accent);
-            color: var(--primary);
+            background: rgba(0, 217, 255, 0.1);
+            transform: translateY(-3px);
         }
 
-        /* Section Styles */
+        /* SECTIONS */
         section {
-            padding: clamp(2rem, 8vw, 4rem) 2rem;
+            padding: 5rem 2rem;
             max-width: 1400px;
             margin: 0 auto;
         }
 
-        .section-title {
-            font-size: clamp(2rem, 6vw, 3rem);
+        section h2 {
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
             font-weight: 900;
             margin-bottom: 3rem;
-            position: relative;
             padding-bottom: 1rem;
-            letter-spacing: -1px;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
         }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        /* VIDEO CAROUSEL */
+        .swiper {
+            width: 100%;
+            padding-bottom: 80px;
         }
 
-        /* Work Section - Manual Carousel */
-        .work-container {
-            position: relative;
+        .swiper-slide {
+            width: auto;
         }
 
-        .work-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            transition: transform 0.5s ease;
-        }
-
-        @media (max-width: 768px) {
-            .work-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .work-item {
+        .work-card, .image-card, .animation-card {
             background: var(--secondary);
             border: 1px solid var(--border);
             border-radius: 12px;
             overflow: hidden;
             transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
             display: flex;
             flex-direction: column;
-        }
-
-        .work-item:hover {
-            border-color: var(--accent);
-            transform: translateY(-8px);
-            box-shadow: 0 20px 60px rgba(0, 217, 255, 0.2);
-        }
-
-
-        /* GLightbox customization */
-        .glightbox-container {
-            background: rgba(0, 0, 0, 0.95);
-        }
-
-        .glightbox-content {
-            max-width: 90vw;
-            max-height: 90vh;
-        }        .work-media-wrapper {
-            width: 100%;
-            aspect-ratio: 1;
-            overflow: hidden;
-        }
-
-        .work-media {
-            width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(255, 0, 110, 0.1));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
             cursor: pointer;
-            text-decoration: none;
         }
 
-        .work-media img {
+        .work-card {
+            width: 350px;
+        }
+
+        .image-card, .animation-card {
+            width: 350px;
+            aspect-ratio: 1 / 1;
+        }
+
+        .work-card:hover, .image-card:hover, .animation-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 20px 50px rgba(0, 217, 255, 0.2);
+        }
+
+        .video-container {
+            position: relative;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
+            padding-bottom: 56.25%;
+            background: #000;
+            overflow: hidden;
         }
 
-        /* Play/Zoom Overlay */
-        .play-overlay {
+        .video-container iframe {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: all 0.3s ease;
+            border: none;
+            pointer-events: none;
         }
 
-        .play-icon,
-        .zoom-icon {
-            width: 60px;
-            height: 60px;
-            filter: drop-shadow(0 0 8px rgba(0, 217, 255, 0.6));
+        .image-card img, .animation-card video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
-        .work-media:hover .play-overlay {
-            opacity: 1;
-            background: rgba(0, 0, 0, 0.6);
-        }
-
-        .work-media:hover .play-icon,
-        .work-media:hover .zoom-icon {
-            transform: scale(1.1);
-        }
-
-        .work-content {
+        .work-info {
             padding: 2rem;
             flex-grow: 1;
             display: flex;
@@ -397,25 +315,23 @@
         }
 
         .work-category {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             color: var(--accent);
-            font-weight: 700;
+            font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             margin-bottom: 0.5rem;
         }
 
         .work-title {
             font-size: 1.3rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
+            margin-bottom: 0.75rem;
         }
 
         .work-description {
-            color: var(--text-secondary);
+            color: var(--text-muted);
             font-size: 0.95rem;
-            line-height: 1.6;
             margin-bottom: 1.5rem;
             flex-grow: 1;
         }
@@ -423,268 +339,234 @@
         .work-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
+            gap: 0.6rem;
         }
 
         .tag {
-            background: rgba(0, 217, 255, 0.1);
+            background: rgba(0, 217, 255, 0.15);
             color: var(--accent);
-            padding: 0.4rem 0.8rem;
+            padding: 0.4rem 0.9rem;
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 600;
         }
 
-        /* Carousel Navigation */
-        .carousel-nav {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 3rem;
-            align-items: center;
-        }
-
-        .carousel-btn {
-            background: var(--secondary);
-            border: 2px solid var(--border);
-            color: var(--accent);
+        /* SWIPER NAVIGATION */
+        .swiper-button-next, .swiper-button-prev {
             width: 50px;
             height: 50px;
+            background: var(--secondary);
+            border: 2px solid var(--border);
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
+            color: var(--accent);
             transition: all 0.3s ease;
-            font-size: 1.5rem;
-            font-weight: bold;
+            top: auto;
+            bottom: 0;
         }
 
-        .carousel-btn:hover {
-            background: var(--tertiary);
+        .swiper-button-next:hover, .swiper-button-prev:hover {
             border-color: var(--accent);
             transform: scale(1.1);
         }
 
-        .carousel-btn:disabled {
-            opacity: 0.5;
+        .swiper-button-next::after, .swiper-button-prev::after {
+            font-size: 1.5rem;
+        }
+
+        .swiper-button-disabled {
+            opacity: 0.3;
             cursor: not-allowed;
         }
 
-        .carousel-counter {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            font-weight: 600;
-            min-width: 100px;
-            text-align: center;
+        .swiper-pagination {
+            bottom: 10px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
         }
 
-        /* AI Innovation Section */
-        .ai-innovation-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .ai-card {
-            background: linear-gradient(135deg, rgba(255, 0, 110, 0.1), rgba(0, 217, 255, 0.1));
-            border: 2px solid var(--border);
-            border-left: 4px solid var(--accent-2);
-            padding: 2rem;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .ai-card::before {
-            content: '';
-            position: absolute;
+        /* MODALS */
+        .video-modal, .image-modal {
+            display: none;
+            position: fixed;
             top: 0;
-            right: 0;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(255, 0, 110, 0.1), transparent);
-            border-radius: 50%;
-            pointer-events: none;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.98);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
         }
 
-        .ai-card:hover {
-            border-color: var(--accent-2);
-            border-left-color: var(--accent);
-            background: linear-gradient(135deg, rgba(255, 0, 110, 0.15), rgba(0, 217, 255, 0.15));
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(255, 0, 110, 0.2);
+        .video-modal.active, .image-modal.active {
+            display: flex;
         }
 
-        .ai-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            display: block;
+        .modal-video-wrapper {
+            width: 100%;
+            max-width: 1400px;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
         }
 
-        .ai-card h3 {
+        .modal-video-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .modal-image-wrapper {
+            width: 100%;
+            max-width: 1400px;
+            max-height: 90vh;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-image-wrapper img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .modal-close-btn, .image-modal-close-btn {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.7);
+            border: none;
             color: var(--accent);
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-            font-weight: 700;
-            position: relative;
-            z-index: 1;
+            font-size: 2rem;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10000;
         }
 
-        .ai-card p {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            position: relative;
-            z-index: 1;
+        .modal-close-btn:hover, .image-modal-close-btn:hover {
+            background: rgba(0, 217, 255, 0.3);
+            transform: scale(1.1);
         }
 
-        /* About Section */
-        .about-container-with-photo {
+        /* ABOUT */
+        .about-grid {
             display: grid;
-            grid-template-columns: 300px 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 3rem;
             align-items: start;
         }
 
         .about-photo {
-            position: sticky;
-            top: 100px;
-        }
-
-        .photo-placeholder {
-            width: 300px;
-            height: 350px;
-            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(255, 0, 110, 0.1));
-            border: 2px solid var(--border);
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 1 / 1;
             border-radius: 12px;
             overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-tertiary);
-            font-size: 0.9rem;
+            border: 2px solid var(--border);
         }
 
-        .headshot {
+        .about-photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .about-content {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
         .about-text h3 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 700;
             margin-bottom: 1rem;
             color: var(--accent);
         }
 
         .about-text p {
-            color: var(--text-secondary);
+            color: var(--text-muted);
             line-height: 1.8;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
-        .competencies {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        .achievements {
+            display: flex;
+            flex-direction: column;
             gap: 1rem;
         }
 
-        .competency-item {
-            background: var(--secondary);
-            border: 1px solid var(--border);
-            padding: 1rem;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            color: var(--text-secondary);
+        .achievement {
+            color: var(--text-muted);
+            padding-left: 1.5rem;
+            position: relative;
         }
 
-        /* Skills Section */
+        .achievement:before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* SKILLS */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            gap: 2.5rem;
         }
 
         .skill-category {
             background: var(--secondary);
-            border: 1px solid var(--border);
             padding: 2rem;
-            border-radius: 12px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
             transition: all 0.3s ease;
         }
 
         .skill-category:hover {
             border-color: var(--accent);
-            box-shadow: 0 10px 40px rgba(0, 217, 255, 0.15);
-        }
-
-        .skill-category.ai-tools {
-            border-color: var(--accent-2);
-            background: linear-gradient(135deg, var(--secondary), rgba(255, 0, 110, 0.05));
-        }
-
-        .skill-category.ai-tools:hover {
-            box-shadow: 0 10px 40px rgba(255, 0, 110, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.15);
         }
 
         .skill-category h3 {
-            color: var(--accent);
-            margin-bottom: 1rem;
             font-size: 1.1rem;
             font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
         }
 
         .skill-list {
             list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
         }
 
         .skill-list li {
-            padding: 0.5rem 0;
-            color: var(--text-secondary);
-            font-size: 0.95rem;
+            color: var(--text-muted);
+            padding-left: 1.2rem;
+            position: relative;
         }
 
-        .skill-list li::before {
-            content: '→ ';
-            color: var(--accent);
-            margin-right: 0.5rem;
-            font-weight: bold;
+        .skill-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent-2);
         }
 
-        /* Resume Section */
-        .resume-container {
-            background: var(--secondary);
-            border: 1px solid var(--border);
-            padding: 3rem;
-            border-radius: 12px;
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .resume-info h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
-        }
-
-        .resume-info p {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
-
-        /* Client Logos Carousel */
+        /* CLIENTS */
         .clients-section {
             background: linear-gradient(180deg, transparent, rgba(0, 217, 255, 0.05));
-            padding: 4rem 2rem;
         }
 
         .clients-carousel-wrapper {
@@ -711,834 +593,352 @@
             justify-content: center;
             padding: 2rem;
             border-right: 1px solid var(--border);
-            font-size: 1rem;
-            color: var(--text-tertiary);
-            font-weight: 600;
             white-space: nowrap;
         }
 
-        @keyframes scroll-left {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
+        .client-logo img {
+            max-width: 150px;
+            max-height: 80px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
         }
 
-        /* Contact Section */
-        .contact-container {
-            background: linear-gradient(135deg, var(--secondary) 0%, rgba(0, 217, 255, 0.05) 100%);
-            border: 1px solid var(--border);
-            padding: 3rem;
-            border-radius: 12px;
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* CONTACT */
+        .contact-content {
             max-width: 600px;
         }
 
-        .contact-info {
+        .contact-content p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.9;
             margin-bottom: 2rem;
         }
 
-        .contact-item {
+        .contact-links {
             display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-link {
+            display: inline-flex;
             align-items: center;
             gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-icon {
-            width: 40px;
-            height: 40px;
-            background: rgba(0, 217, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             color: var(--accent);
-            font-weight: bold;
-            flex-shrink: 0;
-        }
-
-        .contact-item a {
-            color: var(--text-primary);
             text-decoration: none;
-            transition: color 0.3s ease;
+            font-weight: 600;
+            transition: all 0.3s;
         }
 
-        .contact-item a:hover {
-            color: var(--accent);
+        .contact-link:hover {
+            color: var(--accent-2);
+            transform: translateX(5px);
         }
 
-        /* Footer */
+        /* FOOTER */
         footer {
-            background: var(--secondary);
-            border-top: 1px solid var(--border);
-            padding: 2rem;
             text-align: center;
-            color: var(--text-secondary);
+            padding: 3rem 2rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            margin-top: 5rem;
         }
 
-        /* Scroll animations */
-        .fade-in {
-            opacity: 0;
-            animation: fadeIn 0.6s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* Mobile-First Responsive Design */
-        @media (max-width: 480px) {
-            header {
-                padding: 0.75rem 1rem;
-            }
-
-            nav ul {
-                gap: 1rem;
-                font-size: 0.85rem;
-            }
-
-            section {
-                padding: 2rem 1rem;
-            }
-
-            .section-title {
-                font-size: 1.5rem;
-                margin-bottom: 2rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .btn {
-                width: 100%;
-                padding: 0.9rem 1.5rem;
-            }
-
-            .about-container-with-photo {
-                grid-template-columns: 1fr;
-            }
-
-            .about-photo {
-                position: static;
-            }
-
-            .photo-placeholder {
-                width: 100%;
-                max-width: 300px;
-                margin: 0 auto;
-            }
-
-            .resume-container {
-                grid-template-columns: 1fr;
-                padding: 2rem 1.5rem;
-            }
-
-            .carousel-nav {
-                gap: 1rem;
-                flex-direction: column;
-            }
-
-            .carousel-btn {
-                width: 45px;
-                height: 45px;
-                font-size: 1.2rem;
-            }
-
-            .competencies {
-                grid-template-columns: 1fr;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .client-logo {
-                flex: 0 0 150px;
-                padding: 1.5rem 1rem;
-                font-size: 0.85rem;
-            }
-
-            .contact-container {
-                padding: 2rem 1.5rem;
-            }
-        }
-
+        /* RESPONSIVE */
         @media (max-width: 768px) {
             nav ul {
-                gap: 1rem;
+                gap: 1.5rem;
                 font-size: 0.9rem;
             }
 
             .hero {
-                min-height: 70vh;
-                padding: 1.5rem;
+                padding: 2rem 1.5rem;
             }
 
-            .work-grid {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                gap: 1.5rem;
-            }
-
-            .about-container-with-photo {
-                grid-template-columns: 1fr;
-            }
-
-            .about-photo {
-                position: static;
-            }
-
-            .resume-container {
-                grid-template-columns: 1fr;
-            }
-
-            .carousel-nav {
+            .cta-buttons {
                 flex-direction: column;
-                gap: 1.5rem;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 280px;
+            }
+
+            section {
+                padding: 3.5rem 1.5rem;
+            }
+
+            .work-card, .image-card, .animation-card {
+                width: 100%;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
 
             .skills-grid {
                 grid-template-columns: 1fr;
             }
-        }
 
-        @media (min-width: 1024px) {
-            section {
-                padding: clamp(3rem, 10vw, 4rem) 2rem;
-            }
-
-            .work-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .skills-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .competencies {
-                grid-template-columns: repeat(3, 1fr);
+            .swiper-button-next, .swiper-button-prev {
+                width: 40px;
+                height: 40px;
             }
         }
 
-        @media (min-width: 1440px) {
-            nav {
-                max-width: 1600px;
+        @media (max-width: 480px) {
+            .hero {
+                padding: 1.5rem 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
             }
 
             section {
-                max-width: 1600px;
+                padding: 2.5rem 1rem;
             }
 
-            .work-grid {
-                grid-template-columns: repeat(4, 1fr);
+            section h2 {
+                font-size: 1.5rem;
             }
 
-            .skills-grid {
-                grid-template-columns: repeat(3, 1fr);
+            .swiper-button-next, .swiper-button-prev {
+                width: 36px;
+                height: 36px;
+            }
+
+            .video-modal, .image-modal {
+                padding: 1rem;
+            }
+
+            .modal-close-btn, .image-modal-close-btn {
+                top: 1rem;
+                right: 1rem;
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- HEADER -->
     <header>
         <nav>
             <div class="logo">RO</div>
-            <ul>
-                <li><a href="#work" class="nav-link">My Work</a></div></li>
-                <li><a href="#about" class="nav-link">About</a></div></li>
-                <li><a href="#skills" class="nav-link">Skills</a></div></li>
-                <li><a href="#contact" class="nav-link">Contact</a></div></li>
-            </ul>
+            <div class="nav-right">
+                <ul>
+                    <li><a href="#work">Work</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#clients">Clients</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="theme-toggle" onclick="toggleTheme()">
+                    <div class="theme-toggle-circle">🌙</div>
+                </div>
+            </div>
         </nav>
     </header>
 
     <main>
-        <!-- Hero Section -->
+        <!-- HERO -->
         <section class="hero">
             <div class="hero-content">
-                <h1 class="hero-name"><span class="accent-text">Rithesh Ozario</span></h1>
-                <h2 class="hero-title">Creative Director | 3D Animation & VFX</h2>
-                <p>20+ Years Leading Fortune 500 Visual Solutions | MENA, GCC & Asia<br>45% Campaign Performance Improvement • $2M+ Annual Revenue Delivery • 100% On-Time Record</p>
+                <h1><span class="name-gradient">Rithesh Ozario</span></h1>
+                <p class="subtitle">Creative Director | 3D Animation & VFX</p>
+                <p class="hero-description">20+ Years Leading Fortune 500 Visual Solutions | MENA, GCC & Asia<br>45% Campaign Performance Improvement • $2M+ Annual Revenue Delivery • 100% On-Time Record</p>
                 <div class="cta-buttons">
-                    <a href="#work" class="btn btn-primary">View My Work</a></div>
-                    <a href="#contact" class="btn btn-secondary">Get in Touch</a></div>
+                    <a href="#work" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Get in Touch</a>
                 </div>
             </div>
         </section>
 
-        <!-- My Work Section -->
+        <!-- WORK VIDEOS -->
         <section id="work">
-            <h2 class="section-title">My Work</h2>
-            <div class="work-container">
-                <div class="work-grid" id="workGrid">
-                    <!-- Video 1 -->
-                    <div class="work-item">
-                        <div class="work-media-wrapper"><a href="https://vimeo.com/225222487" class="glightbox work-media" data-glightbox="type: video">
-                            <img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 9%22%3E%3Crect fill=%22%231a1f3a%22 width=%2216%22 height=%229%22/%3E%3C/svg%3E" alt="Project" style="width: 100%; height: auto; display: block;">
-                            <div class="play-overlay">
-                                <svg class="play-icon" viewBox="0 0 24 24" fill="white">
-                                    <polygon points="5 3 19 12 5 21"></polygon>
-                                </svg>
-                            </div>
-                        </a></div>
-                        <div class="work-content">
-                            <div class="work-category">3D ANIMATION</div>
-                            <h3 class="work-title">Project 1</h3>
-                            <p class="work-description">Professional 3D animation and visual effects showcase.</p>
-                            <div class="work-tags">
-                                <span class="tag">3D Animation</span>
-                                <span class="tag">VFX</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Video 2 -->
-                    <div class="work-item">
-                        <div class="work-media-wrapper"><a href="https://vimeo.com/255687707" class="glightbox work-media" data-glightbox="type: video">
-                            <img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 9%22%3E%3Crect fill=%22%231a1f3a%22 width=%2216%22 height=%229%22/%3E%3C/svg%3E" alt="Project" style="width: 100%; height: auto; display: block;">
-                            <div class="play-overlay">
-                                <svg class="play-icon" viewBox="0 0 24 24" fill="white">
-                                    <polygon points="5 3 19 12 5 21"></polygon>
-                                </svg>
-                            </div>
-                        </a></div>
-                        <div class="work-content">
-                            <div class="work-category">MOTION GRAPHICS</div>
-                            <h3 class="work-title">Project 2</h3>
-                            <p class="work-description">Dynamic motion graphics and animation work.</p>
-                            <div class="work-tags">
-                                <span class="tag">Motion Graphics</span>
-                                <span class="tag">Cinema 4D</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Video 3 -->
-                    <div class="work-item">
-                        <div class="work-media-wrapper"><a href="https://vimeo.com/222932880" class="glightbox work-media" data-glightbox="type: video">
-                            <img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 9%22%3E%3Crect fill=%22%231a1f3a%22 width=%2216%22 height=%229%22/%3E%3C/svg%3E" alt="Project" style="width: 100%; height: auto; display: block;">
-                            <div class="play-overlay">
-                                <svg class="play-icon" viewBox="0 0 24 24" fill="white">
-                                    <polygon points="5 3 19 12 5 21"></polygon>
-                                </svg>
-                            </div>
-                        </a></div>
-                        <div class="work-content">
-                            <div class="work-category">VFX COMPOSITING</div>
-                            <h3 class="work-title">Ozario Showreel 2017</h3>
-                            <p class="work-description">Professional VFX and 3D animation showreel showcasing 20+ years of creative work.</p>
-                            <div class="work-tags">
-                                <span class="tag">VFX</span>
-                                <span class="tag">Compositing</span>
-                                <span class="tag">Showreel</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Video 4 -->
-                    <div class="work-item">
-                        <div class="work-media-wrapper"><a href="https://vimeo.com/600331807" class="glightbox work-media" data-glightbox="type: video">
-                            <img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 9%22%3E%3Crect fill=%22%231a1f3a%22 width=%2216%22 height=%229%22/%3E%3C/svg%3E" alt="Project" style="width: 100%; height: auto; display: block;">
-                            <div class="play-overlay">
-                                <svg class="play-icon" viewBox="0 0 24 24" fill="white">
-                                    <polygon points="5 3 19 12 5 21"></polygon>
-                                </svg>
-                            </div>
-                        </a></div>
-                        <div class="work-content">
-                            <div class="work-category">3D DESIGN</div>
-                            <h3 class="work-title">Project 4</h3>
-                            <p class="work-description">Advanced 3D design and modeling work.</p>
-                            <div class="work-tags">
-                                <span class="tag">3D Design</span>
-                                <span class="tag">Modeling</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Video 5 -->
-                    <div class="work-item">
-                        <div class="work-media-wrapper"><a href="https://vimeo.com/944776007" class="glightbox work-media" data-glightbox="type: video">
-                            <img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 9%22%3E%3Crect fill=%22%231a1f3a%22 width=%2216%22 height=%229%22/%3E%3C/svg%3E" alt="Project" style="width: 100%; height: auto; display: block;">
-                            <div class="play-overlay">
-                                <svg class="play-icon" viewBox="0 0 24 24" fill="white">
-                                    <polygon points="5 3 19 12 5 21"></polygon>
-                                </svg>
-                            </div>
-                        </a></div>
-                        <div class="work-content">
-                            <div class="work-category">ANIMATION</div>
-                            <h3 class="work-title">Project 5</h3>
-                            <p class="work-description">Character animation and rigging work.</p>
-                            <div class="work-tags">
-                                <span class="tag">Animation</span>
-                                <span class="tag">Character</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Video 6 -->
-                    <div class="work-item">
-                        <div class="work-media-wrapper"><a href="https://vimeo.com/903644540" class="glightbox work-media" data-glightbox="type: video">
-                            <img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 9%22%3E%3Crect fill=%22%231a1f3a%22 width=%2216%22 height=%229%22/%3E%3C/svg%3E" alt="Project" style="width: 100%; height: auto; display: block;">
-                            <div class="play-overlay">
-                                <svg class="play-icon" viewBox="0 0 24 24" fill="white">
-                                    <polygon points="5 3 19 12 5 21"></polygon>
-                                </svg>
-                            </div>
-                        </a></div>
-                        <div class="work-content">
-                            <div class="work-category">VISUAL EFFECTS</div>
-                            <h3 class="work-title">Project 6</h3>
-                            <p class="work-description">Cutting-edge visual effects and CGI work.</p>
-                            <div class="work-tags">
-                                <span class="tag">VFX</span>
-                                <span class="tag">CGI</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Video 7 -->
-                    <div class="work-item">
-                        <div class="work-media-wrapper"><a href="https://vimeo.com/880526606" class="glightbox work-media" data-glightbox="type: video">
-                            <img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 9%22%3E%3Crect fill=%22%231a1f3a%22 width=%2216%22 height=%229%22/%3E%3C/svg%3E" alt="Project" style="width: 100%; height: auto; display: block;">
-                            <div class="play-overlay">
-                                <svg class="play-icon" viewBox="0 0 24 24" fill="white">
-                                    <polygon points="5 3 19 12 5 21"></polygon>
-                                </svg>
-                            </div>
-                        </a></div>
-                        <div class="work-content">
-                            <div class="work-category">3D VISUALIZATION</div>
-                            <h3 class="work-title">Project 7</h3>
-                            <p class="work-description">Professional 3D visualization and rendering.</p>
-                            <div class="work-tags">
-                                <span class="tag">3D Viz</span>
-                                <span class="tag">Rendering</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Video 8 -->
-                    <div class="work-item">
-                        <div class="work-media-wrapper"><a href="https://vimeo.com/321533970" class="glightbox work-media" data-glightbox="type: video">
-                            <img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 9%22%3E%3Crect fill=%22%231a1f3a%22 width=%2216%22 height=%229%22/%3E%3C/svg%3E" alt="Project" style="width: 100%; height: auto; display: block;">
-                            <div class="play-overlay">
-                                <svg class="play-icon" viewBox="0 0 24 24" fill="white">
-                                    <polygon points="5 3 19 12 5 21"></polygon>
-                                </svg>
-                            </div>
-                        </a></div>
-                        <div class="work-content">
-                            <div class="work-category">BROADCAST</div>
-                            <h3 class="work-title">Project 8</h3>
-                            <p class="work-description">Broadcast quality video production.</p>
-                            <div class="work-tags">
-                                <span class="tag">Broadcast</span>
-                                <span class="tag">Production</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Video 9 -->
-                    <div class="work-item">
-                        <div class="work-media-wrapper"><a href="https://vimeo.com/630111834" class="glightbox work-media" data-glightbox="type: video">
-                            <img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 9%22%3E%3Crect fill=%22%231a1f3a%22 width=%2216%22 height=%229%22/%3E%3C/svg%3E" alt="Project" style="width: 100%; height: auto; display: block;">
-                            <div class="play-overlay">
-                                <svg class="play-icon" viewBox="0 0 24 24" fill="white">
-                                    <polygon points="5 3 19 12 5 21"></polygon>
-                                </svg>
-                            </div>
-                        </a></div>
-                        <div class="work-content">
-                            <div class="work-category">COMMERCIAL</div>
-                            <h3 class="work-title">Project 9</h3>
-                            <p class="work-description">High-impact commercial and advertising work.</p>
-                            <div class="work-tags">
-                                <span class="tag">Commercial</span>
-                                <span class="tag">Advertising</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Video 10 -->
-                    <div class="work-item">
-                        <div class="work-media-wrapper"><a href="https://vimeo.com/945103414" class="glightbox work-media" data-glightbox="type: video">
-                            <img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 9%22%3E%3Crect fill=%22%231a1f3a%22 width=%2216%22 height=%229%22/%3E%3C/svg%3E" alt="Project" style="width: 100%; height: auto; display: block;">
-                            <div class="play-overlay">
-                                <svg class="play-icon" viewBox="0 0 24 24" fill="white">
-                                    <polygon points="5 3 19 12 5 21"></polygon>
-                                </svg>
-                            </div>
-                        </a></div>
-                        <div class="work-content">
-                            <div class="work-category">CREATIVE DIRECTION</div>
-                            <h3 class="work-title">Project 10</h3>
-                            <p class="work-description">Creative direction and concept visualization.</p>
-                            <div class="work-tags">
-                                <span class="tag">Creative</span>
-                                <span class="tag">Direction</span>
-                            </div>
-                        </div>
-                    </div>
+            <h2>My Work - Videos</h2>
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><div class="work-card" onclick="openVideoModal('https://player.vimeo.com/video/225222487?h=&badge=0&autopause=0&player_id=0&app_id=58479')"><div class="video-container"><iframe src="https://player.vimeo.com/video/225222487?h=&badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><div class="work-info"><div class="work-category">VFX Shot</div><h3 class="work-title">Sail</h3><p class="work-description">VFX Team Project</p><div class="work-tags"><span class="tag">3D</span><span class="tag">Houdini</span><span class="tag">Python</span><span class="tag">Dynamics</span><span class="tag">VFX</span></div></div></div></div>
+                    <div class="swiper-slide"><div class="work-card" onclick="openVideoModal('https://player.vimeo.com/video/255687707?h=&badge=0&autopause=0&player_id=0&app_id=58479')"><div class="video-container"><iframe src="https://player.vimeo.com/video/255687707?h=&badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><div class="work-info"><div class="work-category">3D Animation</div><h3 class="work-title">Tiger's Diner</h3><p class="work-description">Dynamic 3D Animation</p><div class="work-tags"><span class="tag">Motion</span><span class="tag">Maya</span><span class="tag">Arnold</span><span class="tag">Animation</span><span class="tag">3D</span></div></div></div></div>
+                    <div class="swiper-slide"><div class="work-card" onclick="openVideoModal('https://player.vimeo.com/video/222932880?h=&badge=0&autopause=0&player_id=0&app_id=58479')"><div class="video-container"><iframe src="https://player.vimeo.com/video/222932880?h=&badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><div class="work-info"><div class="work-category">VFX Compositing</div><h3 class="work-title">Showreel</h3><p class="work-description">Technical Direction In VFX</p><div class="work-tags"><span class="tag">VFX</span><span class="tag">Programming</span><span class="tag">Comp</span><span class="tag">3D</span><span class="tag">Animation</span></div></div></div></div>
+                    <div class="swiper-slide"><div class="work-card" onclick="openVideoModal('https://player.vimeo.com/video/600331807?h=&badge=0&autopause=0&player_id=0&app_id=58479')"><div class="video-container"><iframe src="https://player.vimeo.com/video/600331807?h=&badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><div class="work-info"><div class="work-category">Motion Graphics</div><h3 class="work-title">Ooredoo Business</h3><p class="work-description">Stylish Motion Graphics Video</p><div class="work-tags"><span class="tag">2D</span><span class="tag">Motion Graphics</span><span class="tag">AE</span><span class="tag">Stylized</span><span class="tag">VO</span></div></div></div></div>
+                    <div class="swiper-slide"><div class="work-card" onclick="openVideoModal('https://player.vimeo.com/video/944776007?h=&badge=0&autopause=0&player_id=0&app_id=58479')"><div class="video-container"><iframe src="https://player.vimeo.com/video/944776007?h=&badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><div class="work-info"><div class="work-category">3D Animation</div><h3 class="work-title">Kinder TVC Outro</h3><p class="work-description">Kinder Product Lineup</p><div class="work-tags"><span class="tag">Animation</span><span class="tag">Product Showcase</span><span class="tag">AE</span><span class="tag">3D</span><span class="tag">Maya</span></div></div></div></div>
+                    <div class="swiper-slide"><div class="work-card" onclick="openVideoModal('https://player.vimeo.com/video/903644540?h=&badge=0&autopause=0&player_id=0&app_id=58479')"><div class="video-container"><iframe src="https://player.vimeo.com/video/903644540?h=&badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><div class="work-info"><div class="work-category">Visual Effects</div><h3 class="work-title">Houdini Rendering Test</h3><p class="work-description">VFX and CGI</p><div class="work-tags"><span class="tag">VFX</span><span class="tag">CGI</span><span class="tag">Houdini</span><span class="tag">3D</span><span class="tag">Liquid Dynamics</span></div></div></div></div>
+                    <div class="swiper-slide"><div class="work-card" onclick="openVideoModal('https://player.vimeo.com/video/880526606?h=&badge=0&autopause=0&player_id=0&app_id=58479')"><div class="video-container"><iframe src="https://player.vimeo.com/video/880526606?h=&badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><div class="work-info"><div class="work-category">Motion Graphics</div><h3 class="work-title">Mc Cafe Promo</h3><p class="work-description">Product Promotion Video</p><div class="work-tags"><span class="tag">3D</span><span class="tag">Motion Graphics</span><span class="tag">Editing</span><span class="tag">AE</span><span class="tag">Animation</span></div></div></div></div>
+                    <div class="swiper-slide"><div class="work-card" onclick="openVideoModal('https://player.vimeo.com/video/321533970?h=&badge=0&autopause=0&player_id=0&app_id=58479')"><div class="video-container"><iframe src="https://player.vimeo.com/video/321533970?h=&badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><div class="work-info"><div class="work-category">3D Animation</div><h3 class="work-title">Kuwait Airways Promo</h3><p class="work-description">Animation For Kuwait Airways</p><div class="work-tags"><span class="tag">3D</span><span class="tag">AE</span><span class="tag">Motion Graphics</span><span class="tag">Animation</span></div></div></div></div>
+                    <div class="swiper-slide"><div class="work-card" onclick="openVideoModal('https://player.vimeo.com/video/630111834?h=&badge=0&autopause=0&player_id=0&app_id=58479')"><div class="video-container"><iframe src="https://player.vimeo.com/video/630111834?h=&badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><div class="work-info"><div class="work-category">Motion Graphics</div><h3 class="work-title">Green Cola Promo</h3><p class="work-description">Motion Graphics animation</p><div class="work-tags"><span class="tag">AE</span><span class="tag">2D</span><span class="tag">Motion Graphics</span><span class="tag">Animation</span></div></div></div></div>
+                    <div class="swiper-slide"><div class="work-card" onclick="openVideoModal('https://player.vimeo.com/video/945103414?h=&badge=0&autopause=0&player_id=0&app_id=58479')"><div class="video-container"><iframe src="https://player.vimeo.com/video/945103414?h=&badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><div class="work-info"><div class="work-category">Product Presentation</div><h3 class="work-title">Nutella Ramadan Jar Presentation</h3><p class="work-description">Nutella Custom Labels For Ramadan</p><div class="work-tags"><span class="tag">Creative</span></div></div></div></div>
                 </div>
-
-                <div class="carousel-nav">
-                    <button class="carousel-btn" id="prevBtn" onclick="scrollWork(-1)">←</button>
-                    <span class="carousel-counter"><span id="currentSlide">1</span> / <span id="totalSlides">3</span></span>
-                    <button class="carousel-btn" id="nextBtn" onclick="scrollWork(1)">→</button>
-                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-pagination"></div>
             </div>
         </section>
 
-        <!-- AI-Powered Creative Innovation Section -->
-        <section>
-            <h2 class="section-title">AI-Powered Creative Innovation</h2>
-            <div class="ai-innovation-container">
-                <div class="ai-card">
-                    <div class="ai-icon">🎨</div>
-                    <h3>Accelerated Image & Video Creation</h3>
-                    <p>Leveraging cutting-edge generative AI to rapidly prototype visual concepts, create stunning assets, and produce high-quality imagery that would traditionally take weeks. AI acts as a creative multiplier, enabling faster iteration and more ambitious exploration.</p>
+        <!-- IMAGE CAROUSEL -->
+        <section id="images">
+            <h2>Image Portfolio</h2>
+            <div class="swiper imageSwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><div class="image-card" onclick="openImageModal('https://raw.githubusercontent.com/RitzOzario/portfolio/main/monster.png')"><img src="https://raw.githubusercontent.com/RitzOzario/portfolio/main/monster.png" alt="Image 1"></div></div>
+                    <div class="swiper-slide"><div class="image-card" onclick="openImageModal('https://via.placeholder.com/400x400?text=Image+2')"><img src="https://via.placeholder.com/400x400?text=Image+2" alt="Image 2"></div></div>
+                    <div class="swiper-slide"><div class="image-card" onclick="openImageModal('https://via.placeholder.com/400x400?text=Image+3')"><img src="https://via.placeholder.com/400x400?text=Image+3" alt="Image 3"></div></div>
+                    <div class="swiper-slide"><div class="image-card" onclick="openImageModal('https://via.placeholder.com/400x400?text=Image+4')"><img src="https://via.placeholder.com/400x400?text=Image+4" alt="Image 4"></div></div>
+                    <div class="swiper-slide"><div class="image-card" onclick="openImageModal('https://via.placeholder.com/400x400?text=Image+5')"><img src="https://via.placeholder.com/400x400?text=Image+5" alt="Image 5"></div></div>
+                    <div class="swiper-slide"><div class="image-card" onclick="openImageModal('https://via.placeholder.com/400x400?text=Image+6')"><img src="https://via.placeholder.com/400x400?text=Image+6" alt="Image 6"></div></div>
+                    <div class="swiper-slide"><div class="image-card" onclick="openImageModal('https://via.placeholder.com/400x400?text=Image+7')"><img src="https://via.placeholder.com/400x400?text=Image+7" alt="Image 7"></div></div>
+                    <div class="swiper-slide"><div class="image-card" onclick="openImageModal('https://via.placeholder.com/400x400?text=Image+8')"><img src="https://via.placeholder.com/400x400?text=Image+8" alt="Image 8"></div></div>
                 </div>
-                <div class="ai-card">
-                    <div class="ai-icon">⚡</div>
-                    <h3>Enhanced Design Workflows</h3>
-                    <p>Integrating AI tools into every stage of the design process—from ideation and concept generation to asset refinement and optimization. AI streamlines repetitive tasks, freeing creative energy for strategic thinking and artistic direction.</p>
-                </div>
-                <div class="ai-card">
-                    <div class="ai-icon">🚀</div>
-                    <h3>Next-Gen Creative Possibilities</h3>
-                    <p>Exploring the frontier of AI-assisted creativity to unlock unprecedented visual possibilities. From AI-generated base assets refined through professional VFX pipelines to AI-enhanced compositing—transforming how we create.</p>
-                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-pagination"></div>
             </div>
         </section>
 
-        <!-- About Section -->
+        <!-- ANIMATIONS CAROUSEL -->
+        <section id="animations">
+            <h2>Animations</h2>
+            <div class="swiper animationSwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><div class="animation-card"><video autoplay muted loop playsinline><source src="https://github.com/YOUR-USERNAME/REPO-NAME/raw/main/animation-1.mp4" type="video/mp4"></video></div></div>
+                    <div class="swiper-slide"><div class="animation-card"><video autoplay muted loop playsinline><source src="https://github.com/YOUR-USERNAME/REPO-NAME/raw/main/animation-2.mp4" type="video/mp4"></video></div></div>
+                    <div class="swiper-slide"><div class="animation-card"><video autoplay muted loop playsinline><source src="https://github.com/YOUR-USERNAME/REPO-NAME/raw/main/animation-3.mp4" type="video/mp4"></video></div></div>
+                    <div class="swiper-slide"><div class="animation-card"><video autoplay muted loop playsinline><source src="https://github.com/YOUR-USERNAME/REPO-NAME/raw/main/animation-4.mp4" type="video/mp4"></video></div></div>
+                    <div class="swiper-slide"><div class="animation-card"><video autoplay muted loop playsinline><source src="https://github.com/YOUR-USERNAME/REPO-NAME/raw/main/animation-5.mp4" type="video/mp4"></video></div></div>
+                    <div class="swiper-slide"><div class="animation-card"><video autoplay muted loop playsinline><source src="https://github.com/YOUR-USERNAME/REPO-NAME/raw/main/animation-6.mp4" type="video/mp4"></video></div></div>
+                    <div class="swiper-slide"><div class="animation-card"><video autoplay muted loop playsinline><source src="https://github.com/YOUR-USERNAME/REPO-NAME/raw/main/animation-7.mp4" type="video/mp4"></video></div></div>
+                    <div class="swiper-slide"><div class="animation-card"><video autoplay muted loop playsinline><source src="https://github.com/YOUR-USERNAME/REPO-NAME/raw/main/animation-8.mp4" type="video/mp4"></video></div></div>
+                    <div class="swiper-slide"><div class="animation-card"><video autoplay muted loop playsinline><source src="https://github.com/YOUR-USERNAME/REPO-NAME/raw/main/animation-9.mp4" type="video/mp4"></video></div></div>
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
         <section id="about">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-container-with-photo">
-                <div class="about-photo">
-                    <div class="photo-placeholder">
-                        <img src="your-headshot.jpg" alt="Rithesh Ozario - Creative Director" class="headshot">
-                    </div>
-                </div>
-                <div class="about-content">
-                    <div class="about-text">
-                        <h3>Creative Leadership Across 20+ Years</h3>
-                        <p>I'm a Creative Director with proven expertise in leading 3D/2D animation, VFX, and AR/VR/XR production for global Fortune 500 brands. My career spans UAE, Kuwait, Singapore, and India, delivering measurable business impact:</p>
-                        <div class="competencies">
-                            <div class="competency-item">✦ 45% improvement in campaign performance metrics</div>
-                            <div class="competency-item">✦ 40% YoY creative output growth</div>
-                            <div class="competency-item">✦ $2M+ annual revenue delivery</div>
-                            <div class="competency-item">✦ Regional AR/VR innovation leader</div>
-                            <div class="competency-item">✦ 100% on-time delivery record</div>
-                            <div class="competency-item">✦ High-performing team builder</div>
-                        </div>
-                    </div>
-                    <div class="about-text">
-                        <h3>AI-Driven Creative Vision</h3>
-                        <p>Beyond traditional creative tools, I'm committed to exploring how artificial intelligence can revolutionize the design and production process. I leverage AI not as a replacement for creativity, but as a powerful accelerator—using generative tools to prototype ideas faster, generate stunning assets, and enhance every stage of the creative pipeline.</p>
-                        <div class="competencies">
-                            <div class="competency-item">Creative Direction & Strategy</div>
-                            <div class="competency-item">AI-Accelerated Workflows</div>
-                            <div class="competency-item">Production Pipeline Optimization</div>
-                            <div class="competency-item">AR/VR/XR Development</div>
-                            <div class="competency-item">Brand Strategy & Design Systems</div>
-                            <div class="competency-item">Stakeholder Management</div>
-                        </div>
-                    </div>
-                </div>
+            <h2>About Me</h2>
+            <div class="about-grid">
+                <div class="about-photo"><img src="https://via.placeholder.com/400x400?text=Your+Photo" alt="Rithesh Ozario"></div>
+                <div><div class="about-text"><h3>Creative Leadership Across 20+ Years</h3><p>I'm a Creative Director with proven expertise in leading 3D/2D animation, VFX, and AR/VR/XR production for global Fortune 500 brands. My career spans UAE, Kuwait, Singapore, and India, delivering measurable business impact.</p><div class="achievements"><div class="achievement">45% improvement in campaign performance metrics</div><div class="achievement">40% YoY creative output growth</div><div class="achievement">$2M+ annual revenue delivery</div><div class="achievement">Regional AR/VR innovation leader</div><div class="achievement">100% on-time delivery record</div></div></div><div class="about-text"><h3>AI-Driven Creative Vision</h3><p>Beyond traditional creative tools, I'm committed to exploring how artificial intelligence can revolutionize the design and production process. I leverage AI not as a replacement for creativity, but as a powerful accelerator.</p><div class="achievements"><div class="achievement">Creative Direction & Strategy</div><div class="achievement">AI-Accelerated Workflows</div><div class="achievement">Production Pipeline Optimization</div><div class="achievement">AR/VR/XR Development</div><div class="achievement">Brand Strategy & Design Systems</div></div></div></div>
             </div>
         </section>
 
-        <!-- Skills Section -->
+        <!-- SKILLS -->
         <section id="skills">
-            <h2 class="section-title">Technical Expertise</h2>
+            <h2>Technical Expertise</h2>
             <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>3D Software</h3>
-                    <ul class="skill-list">
-                        <li>Maya</li>
-                        <li>3ds Max</li>
-                        <li>Cinema 4D</li>
-                        <li>Houdini</li>
-                        <li>ZBrush</li>
-                        <li>Unreal Engine</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Compositing & VFX</h3>
-                    <ul class="skill-list">
-                        <li>Nuke</li>
-                        <li>After Effects</li>
-                        <li>Digital Fusion</li>
-                        <li>Color Grading</li>
-                        <li>Motion Graphics</li>
-                        <li>Rotoscoping</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Rendering & Design</h3>
-                    <ul class="skill-list">
-                        <li>Arnold</li>
-                        <li>RenderMan</li>
-                        <li>V-Ray</li>
-                        <li>Octane</li>
-                        <li>Substance Painter</li>
-                        <li>Keyshot</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Immersive Tech</h3>
-                    <ul class="skill-list">
-                        <li>AR/VR Development</li>
-                        <li>Spark AR</li>
-                        <li>Zapworks</li>
-                        <li>XR Production</li>
-                        <li>Interactive Design</li>
-                        <li>WebGL</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Video Production</h3>
-                    <ul class="skill-list">
-                        <li>Premiere Pro</li>
-                        <li>DaVinci Resolve</li>
-                        <li>Motion Design</li>
-                        <li>Color Correction</li>
-                        <li>Editing & Timing</li>
-                        <li>Sound Design</li>
-                    </ul>
-                </div>
-                <div class="skill-category ai-tools">
-                    <h3>🤖 AI Creative Tools</h3>
-                    <ul class="skill-list">
-                        <li>Generative AI for Images/Video</li>
-                        <li>AI-Assisted Design Workflows</li>
-                        <li>Text-to-Image Models</li>
-                        <li>Video Synthesis & Enhancement</li>
-                        <li>AI-Powered Asset Generation</li>
-                        <li>Creative Process Acceleration</li>
-                    </ul>
-                </div>
+                <div class="skill-category"><h3>3D Software</h3><ul class="skill-list"><li>Maya</li><li>Cinema 4D</li><li>Houdini</li><li>ZBrush</li><li>Unreal Engine</li><li>Blender</li></ul></div>
+                <div class="skill-category"><h3>Compositing & VFX</h3><ul class="skill-list"><li>Nuke</li><li>After Effects</li><li>Motion Graphics</li><li>Color Grading</li><li>Rotoscoping</li><li>Visual Effects</li></ul></div>
+                <div class="skill-category"><h3>Rendering & Design</h3><ul class="skill-list"><li>Arnold</li><li>RenderMan</li><li>V-Ray</li><li>Octane</li><li>Substance Painter</li><li>Keyshot</li></ul></div>
+                <div class="skill-category"><h3>Immersive Tech</h3><ul class="skill-list"><li>AR/VR Development</li><li>Spark AR</li><li>WebGL</li><li>Interactive Design</li><li>XR Production</li><li>Zapworks</li></ul></div>
             </div>
         </section>
 
-        <!-- Resume Section -->
-        <section>
-            <div class="resume-container">
-                <div class="resume-info">
-                    <h3>Download My Resume</h3>
-                    <p>Get a detailed overview of my experience, achievements, and technical expertise.</p>
-                    <a href="Rithesh_Ozario_CD2026_Resume_Final.pdf" class="btn btn-primary" download>Download PDF</a></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Clients Section -->
-        <section class="clients-section">
-            <h2 class="section-title">Clients & Brands</h2>
+        <!-- CLIENTS -->
+        <section id="clients" class="clients-section">
+            <h2>Clients & Brands</h2>
             <div class="clients-carousel-wrapper">
-                <div class="clients-carousel" id="clientsCarousel">
-                    <!-- TEMPLATE: Add client logos here -->
-                    <!-- Format: <div class="client-logo">CLIENT NAME</div> -->
-                    <div class="client-logo">Ferrero</div>
-                    <div class="client-logo">Ooredoo</div>
-                    <div class="client-logo">Gulf Bank</div>
-                    <div class="client-logo">Honda</div>
-                    <div class="client-logo">Chevrolet</div>
-                    <div class="client-logo">Costa Coffee</div>
-                    <div class="client-logo">Agility Logistics</div>
-                    <div class="client-logo">ISRO</div>
-                    <!-- Duplicate for seamless loop -->
-                    <div class="client-logo">Ferrero</div>
-                    <div class="client-logo">Ooredoo</div>
-                    <div class="client-logo">Gulf Bank</div>
-                    <div class="client-logo">Honda</div>
-                    <div class="client-logo">Chevrolet</div>
-                    <div class="client-logo">Costa Coffee</div>
-                    <div class="client-logo">Agility Logistics</div>
-                    <div class="client-logo">ISRO</div>
+                <div class="clients-carousel">
+                    <div class="client-logo"><img src="https://via.placeholder.com/150x80?text=Ferrero" alt="Ferrero"></div>
+                    <div class="client-logo"><img src="https://via.placeholder.com/150x80?text=Ooredoo" alt="Ooredoo"></div>
+                    <div class="client-logo"><img src="https://via.placeholder.com/150x80?text=Gulf+Bank" alt="Gulf Bank"></div>
+                    <div class="client-logo"><img src="https://via.placeholder.com/150x80?text=Honda" alt="Honda"></div>
+                    <div class="client-logo"><img src="https://via.placeholder.com/150x80?text=Chevrolet" alt="Chevrolet"></div>
+                    <div class="client-logo"><img src="https://via.placeholder.com/150x80?text=Costa+Coffee" alt="Costa Coffee"></div>
+                    <div class="client-logo"><img src="https://via.placeholder.com/150x80?text=Agility" alt="Agility"></div>
+                    <div class="client-logo"><img src="https://via.placeholder.com/150x80?text=ISRO" alt="ISRO"></div>
+                    <div class="client-logo"><img src="https://via.placeholder.com/150x80?text=Ferrero" alt="Ferrero"></div>
+                    <div class="client-logo"><img src="https://via.placeholder.com/150x80?text=Ooredoo" alt="Ooredoo"></div>
+                    <div class="client-logo"><img src="https://via.placeholder.com/150x80?text=Gulf+Bank" alt="Gulf Bank"></div>
+                    <div class="client-logo"><img src="https://via.placeholder.com/150x80?text=Honda" alt="Honda"></div>
+                    <div class="client-logo"><img src="https://via.placeholder.com/150x80?text=Chevrolet" alt="Chevrolet"></div>
+                    <div class="client-logo"><img src="https://via.placeholder.com/150x80?text=Costa+Coffee" alt="Costa Coffee"></div>
+                    <div class="client-logo"><img src="https://via.placeholder.com/150x80?text=Agility" alt="Agility"></div>
+                    <div class="client-logo"><img src="https://via.placeholder.com/150x80?text=ISRO" alt="ISRO"></div>
                 </div>
             </div>
         </section>
 
-        <!-- Contact Section -->
+        <!-- CONTACT -->
         <section id="contact">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">📍</div>
-                        <div>
-                            <strong>Location</strong><br>
-                            Dubai, UAE
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📞</div>
-                        <div>
-                            <strong>Phone</strong><br>
-                            <a href="tel:+971504860824">+971-50-4860824</a></div>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">✉️</div>
-                        <div>
-                            <strong>Email</strong><br>
-                            <a href="/cdn-cgi/l/email-protection#dbb4a1baa9b2b49ba2bab3b4b4f5b8b4b6"><span class="__cf_email__" data-cfemail="5a35203b2833351a233b32353574393537">[email&#160;protected]</span></a></div>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">💼</div>
-                        <div>
-                            <strong>LinkedIn</strong><br>
-                            <a href="https://linkedin.com/in/rithesh-ozario" target="_blank">linkedin.com/in/rithesh-ozario</a></div>
-                        </div>
-                    </div>
+            <h2>Get In Touch</h2>
+            <div class="contact-content">
+                <p>I'm always interested in hearing about new projects and opportunities. Feel free to reach out if you'd like to collaborate or discuss how I can help bring your creative vision to life.</p>
+                <div class="contact-links">
+                    <a href="mailto:contact@rithesh.com" class="contact-link">📧 contact@rithesh.com</a>
+                    <a href="tel:+971504860824" class="contact-link">📱 +971-50-4860824</a>
+                    <p style="color: var(--text-muted); margin-top: 1rem;">📍 Dubai, UAE</p>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Rithesh Ozario. All rights reserved. | Creative Director | 3D Animation & VFX Specialist</p>
+        <p>&copy; 2024 Rithesh Ozario. All rights reserved.</p>
     </footer>
 
-    <!-- Vimeo thumbnail loader using oEmbed API -->
+    <!-- MODALS -->
+    <div class="video-modal" id="videoModal">
+        <button class="modal-close-btn" onclick="closeVideoModal()">✕</button>
+        <div class="modal-video-wrapper" id="videoWrapper"></div>
+    </div>
+
+    <div class="image-modal" id="imageModal">
+        <button class="image-modal-close-btn" onclick="closeImageModal()">✕</button>
+        <div class="modal-image-wrapper" id="imageWrapper"></div>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
     <script>
-        async function loadVimeoThumbnails() {
-            const videoIds = [225222487, 255687707, 222932880, 600331807, 944776007, 903644540, 880526606, 321533970, 630111834, 945103414];
-            
-            for (const videoId of videoIds) {
-                try {
-                    const response = await fetch(`https://vimeo.com/api/oembed.json?url=https://vimeo.com/${videoId}`);
-                    const data = await response.json();
-                    
-                    // Find the image element for this video
-                    const link = document.querySelector(`a[href="https://vimeo.com/${videoId}"]`);
-                    if (link) {
-                        const img = link.querySelector('img');
-                        if (img && data.thumbnail_url) {
-                            img.src = data.thumbnail_url;
-                            img.style.width = '100%';
-                            img.style.height = 'auto';
-                            img.style.display = 'block';
-                        }
-                    }
-                } catch (error) {
-                    console.log(`Thumbnail load issue for ${videoId}`);
-                }
-            }
+        // Theme Toggle
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
         }
 
-        // Load thumbnails when page is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', loadVimeoThumbnails);
-        } else {
-            loadVimeoThumbnails();
-        }
-    </script>
-
-    <!-- GLightbox initialization -->
-    <script>
-        const lightbox = GLightbox({
-            selector: '.glightbox',
-            touchNavigation: true,
-            loop: true,
-            autoplayVideos: true
-        });
-    </script>
-
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        let currentWorkIndex = 0;
-        const workItems = document.querySelectorAll('.work-item');
-        const totalItems = workItems.length;
-        const itemsPerView = getItemsPerView();
-
-        function getItemsPerView() {
-            const width = window.innerWidth;
-            if (width < 768) return 1;
-            if (width < 1024) return 2;
-            return 3;
+        // Load saved theme on page load
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
         }
 
-        function updateCarousel() {
-            const workGrid = document.getElementById('workGrid');
-            const offset = currentWorkIndex * (100 / itemsPerView);
-            workGrid.style.transform = `translateX(-${offset}%)`;
-            
-            document.getElementById('currentSlide').textContent = Math.min(currentWorkIndex + itemsPerView, totalItems);
-            document.getElementById('totalSlides').textContent = totalItems;
-            
-            document.getElementById('prevBtn').disabled = currentWorkIndex === 0;
-            document.getElementById('nextBtn').disabled = currentWorkIndex + itemsPerView >= totalItems;
-        }
+        // Initialize Carousels
+        new Swiper('.mySwiper', { slidesPerView: 3, spaceBetween: 30, navigation: { nextEl: '#work .swiper-button-next', prevEl: '#work .swiper-button-prev' }, pagination: { el: '#work .swiper-pagination', type: 'custom', renderCustom: (s, c, t) => c + ' - ' + Math.min(c + 2, t) + ' / ' + t }, breakpoints: { 320: { slidesPerView: 1, spaceBetween: 20 }, 768: { slidesPerView: 2, spaceBetween: 25 }, 1200: { slidesPerView: 3, spaceBetween: 30 } } });
+        
+        new Swiper('.imageSwiper', { slidesPerView: 3, spaceBetween: 30, navigation: { nextEl: '#images .swiper-button-next', prevEl: '#images .swiper-button-prev' }, pagination: { el: '#images .swiper-pagination', type: 'custom', renderCustom: (s, c, t) => c + ' - ' + Math.min(c + 2, t) + ' / ' + t }, breakpoints: { 320: { slidesPerView: 1, spaceBetween: 20 }, 768: { slidesPerView: 2, spaceBetween: 25 }, 1200: { slidesPerView: 3, spaceBetween: 30 } } });
+        
+        new Swiper('.animationSwiper', { slidesPerView: 3, spaceBetween: 30, navigation: { nextEl: '#animations .swiper-button-next', prevEl: '#animations .swiper-button-prev' }, pagination: { el: '#animations .swiper-pagination', type: 'custom', renderCustom: (s, c, t) => c + ' - ' + Math.min(c + 2, t) + ' / ' + t }, breakpoints: { 320: { slidesPerView: 1, spaceBetween: 20 }, 768: { slidesPerView: 2, spaceBetween: 25 }, 1200: { slidesPerView: 3, spaceBetween: 30 } } });
 
-        function scrollWork(direction) {
-            const maxIndex = Math.max(0, totalItems - itemsPerView);
-            currentWorkIndex = Math.max(0, Math.min(currentWorkIndex + direction, maxIndex));
-            updateCarousel();
-        }
+        // Video Modal
+        function openVideoModal(videoUrl) { const m = document.getElementById('videoModal'); document.getElementById('videoWrapper').innerHTML = `<iframe src="${videoUrl}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`; m.classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeVideoModal() { const m = document.getElementById('videoModal'); m.classList.remove('active'); document.getElementById('videoWrapper').innerHTML = ''; document.body.style.overflow = 'auto'; }
 
-        window.addEventListener('resize', () => {
-            currentWorkIndex = 0;
-            updateCarousel();
-        });
+        // Image Modal
+        function openImageModal(imageUrl) { const m = document.getElementById('imageModal'); document.getElementById('imageWrapper').innerHTML = `<img src="${imageUrl}" alt="Image">`; m.classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeImageModal() { const m = document.getElementById('imageModal'); m.classList.remove('active'); document.getElementById('imageWrapper').innerHTML = ''; document.body.style.overflow = 'auto'; }
 
-        // Initialize
-        updateCarousel();
+        // Close on background click
+        document.getElementById('videoModal').addEventListener('click', function(e) { if (e.target === this) closeVideoModal(); });
+        document.getElementById('imageModal').addEventListener('click', function(e) { if (e.target === this) closeImageModal(); });
 
-        // Navigation active state
-        const navLinks = document.querySelectorAll('.nav-link');
-        const sections = document.querySelectorAll('section');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                
-                if (pageYOffset >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').slice(1) === current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Scroll reveal animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                            }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.work-item, .skill-category, .competency-item, .ai-card').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Video Modal Functions
+        // Close on Escape
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeVideoModal(); closeImageModal(); } });
     </script>
 </body>
 </html>
