@@ -253,9 +253,14 @@
             padding-bottom: 80px;
         }
 
-        .swiper-slide {
-            width: auto;
-        }
+.swiper-slide {
+    width: auto;
+    cursor: grab;
+}
+
+.swiper-slide:active {
+    cursor: grabbing;
+}
 
         .work-card, .image-card, .animation-card {
             background: var(--secondary);
@@ -352,32 +357,47 @@
         }
 
         /* SWIPER NAVIGATION */
-        .swiper-button-next, .swiper-button-prev {
-            width: 50px;
-            height: 50px;
-            background: var(--secondary);
-            border: 2px solid var(--border);
-            border-radius: 50%;
-            color: var(--accent);
-            transition: all 0.3s ease;
-            top: auto;
-            bottom: 0;
-        }
+.swiper {
+    width: 100%;
+    padding-bottom: 80px;
+}
 
-        .swiper-button-next:hover, .swiper-button-prev:hover {
-            border-color: var(--accent);
-            transform: scale(1.1);
-        }
+.swiper-button-next, .swiper-button-prev {
+    width: 50px;
+    height: 50px;
+    background: var(--secondary);
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    color: var(--accent);
+    transition: all 0.3s ease;
+    top: auto;
+    bottom: 15px;
+}
 
-        .swiper-button-next::after, .swiper-button-prev::after {
-            font-size: 1.5rem;
-        }
+.swiper-button-prev {
+    left: 0;
+}
 
-        .swiper-button-disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-        }
+.swiper-button-next {
+    right: 0;
+}
 
+.swiper-button-next:hover, .swiper-button-prev:hover {
+    border-color: var(--accent);
+    transform: scale(1);
+    cursor: pointer;
+}
+
+.swiper-button-next::after, .swiper-button-prev::after {
+    font-size: 1.5rem;
+}
+
+.swiper-button-disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+		
+		
         .swiper-pagination {
             bottom: 10px;
             color: var(--text-muted);
@@ -569,46 +589,45 @@
             background: linear-gradient(180deg, transparent, rgba(0, 217, 255, 0.05));
         }
 
-        .clients-carousel-wrapper {
-            overflow: hidden;
-            background: var(--primary);
-            border-radius: 12px;
-            border: 1px solid var(--border);
-        }
+.clients-carousel-wrapper {
+    overflow: hidden;
+    background: var(--primary);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
 
-        .clients-carousel {
-            display: flex;
-            animation: scroll-left 40s linear infinite;
-            width: fit-content;
-        }
+.clients-carousel {
+    display: flex;
+    animation: scroll-left 50s linear infinite;
+    width: max-content;
+}
 
-        .clients-carousel:hover {
-            animation-play-state: paused;
-        }
+.clients-carousel:hover {
+    animation-play-state: paused;
+}
 
-        .client-logo {
-            flex: 0 0 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            border-right: 1px solid var(--border);
-            white-space: nowrap;
-        }
+.client-logo {
+    flex: 0 0 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    border-right: 1px solid var(--border);
+    white-space: nowrap;
+}
 
-        .client-logo img {
-            max-width: 150px;
-            max-height: 80px;
-            width: auto;
-            height: auto;
-            object-fit: contain;
-        }
+.client-logo img {
+    max-width: 150px;
+    max-height: 80px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
 
-        @keyframes scroll-left {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
+@keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
         /* CONTACT */
         .contact-content {
             max-width: 600px;
@@ -796,7 +815,7 @@
                 <div class="swiper-wrapper">
                     <div class="swiper-slide"><div class="image-card" onclick="openImageModal('https://raw.githubusercontent.com/RitzOzario/portfolio/main/monster.png')"><img src="https://raw.githubusercontent.com/RitzOzario/portfolio/main/monster.png" alt="Image 1"></div></div>
 					<div class="swiper-slide"><div class="image-card" onclick="openImageModal('https://raw.githubusercontent.com/RitzOzario/portfolio/main/WarLord.png')"><img src="https://raw.githubusercontent.com/RitzOzario/portfolio/main/WarLord.png" alt="Image 2"></div></div>
-                    <div class="swiper-slide"><div class="image-card" onclick="openImageModal('https://raw.githubusercontent.com/RitzOzario/portfolio/main/hellboy.png')"><img src="https://raw.githubusercontent.com/RitzOzario/portfolio/main/hellboy.png" alt="Image 3"></div></div>
+                    <div class="swiper-slide"><div class="image-card" onclick="openImageModal('https://raw.githubusercontent.com/RitzOzario/portfolio/main/hellboy1.png')"><img src="https://raw.githubusercontent.com/RitzOzario/portfolio/main/hellboy1.png" alt="Image 3"></div></div>
                     <div class="swiper-slide"><div class="image-card" onclick="openImageModal('https://raw.githubusercontent.com/RitzOzario/portfolio/main/WV_van.png')"><img src="https://raw.githubusercontent.com/RitzOzario/portfolio/main/WV_van.png" alt="Image 4"></div></div>
                     <div class="swiper-slide"><div class="image-card" onclick="openImageModal('https://raw.githubusercontent.com/RitzOzario/portfolio/main/haunting_1.png')"><img src="https://raw.githubusercontent.com/RitzOzario/portfolio/main/haunting_1.png" alt="Image 5"></div></div>
                     <div class="swiper-slide"><div class="image-card" onclick="openImageModal('https://raw.githubusercontent.com/RitzOzario/portfolio/main/NHM.png')"><img src="https://raw.githubusercontent.com/RitzOzario/portfolio/main/NHM.png" alt="Image 6"></div></div>
@@ -817,13 +836,13 @@
                 <div class="swiper-wrapper">
                     <div class="swiper-slide"><div class="animation-card"><video autoplay muted loop playsinline><source src="https://github.com/RitzOzario/portfolio/raw/refs/heads/main/the_jellyfis.mp4" type="video/mp4"></video></div></div>
                     <div class="swiper-slide"><div class="animation-card"><video autoplay muted loop playsinline><source src="https://github.com/RitzOzario/portfolio/raw/refs/heads/main/theBeast.mp4" type="video/mp4"></video></div></div>
-                    <div class="swiper-slide"><div class="animation-card"><video autoplay muted loop playsinline><source src="https://github.com/YOUR-USERNAME/REPO-NAME/raw/main/animation-3.mp4" type="video/mp4"></video></div></div>
-                    <div class="swiper-slide"><div class="animation-card"><video autoplay muted loop playsinline><source src="https://github.com/YOUR-USERNAME/REPO-NAME/raw/main/animation-4.mp4" type="video/mp4"></video></div></div>
-                    <div class="swiper-slide"><div class="animation-card"><video autoplay muted loop playsinline><source src="https://github.com/YOUR-USERNAME/REPO-NAME/raw/main/animation-5.mp4" type="video/mp4"></video></div></div>
-                    <div class="swiper-slide"><div class="animation-card"><video autoplay muted loop playsinline><source src="https://github.com/YOUR-USERNAME/REPO-NAME/raw/main/animation-6.mp4" type="video/mp4"></video></div></div>
-                    <div class="swiper-slide"><div class="animation-card"><video autoplay muted loop playsinline><source src="https://github.com/YOUR-USERNAME/REPO-NAME/raw/main/animation-7.mp4" type="video/mp4"></video></div></div>
-                    <div class="swiper-slide"><div class="animation-card"><video autoplay muted loop playsinline><source src="https://github.com/YOUR-USERNAME/REPO-NAME/raw/main/animation-8.mp4" type="video/mp4"></video></div></div>
-                    <div class="swiper-slide"><div class="animation-card"><video autoplay muted loop playsinline><source src="https://github.com/YOUR-USERNAME/REPO-NAME/raw/main/animation-9.mp4" type="video/mp4"></video></div></div>
+                    <div class="swiper-slide"><div class="animation-card"><video autoplay muted loop playsinline><source src="https://github.com/RitzOzario/portfolio/raw/refs/heads/main/Rithesh Pocketwatch_LR.mp4" type="video/mp4"></video></div></div>
+                    <div class="swiper-slide"><div class="animation-card"><video autoplay muted loop playsinline><source src="https://github.com/RitzOzario/portfolio/raw/refs/heads/main/Ballbox.mp4" type="video/mp4"></video></div></div>
+                    <div class="swiper-slide"><div class="animation-card"><video autoplay muted loop playsinline><source src="https://github.com/RitzOzario/portfolio/raw/refs/heads/main/JellyFish_Master_Cmp.mp4" type="video/mp4"></video></div></div>
+                    <div class="swiper-slide"><div class="animation-card"><video autoplay muted loop playsinline><source src="https://github.com/RitzOzario/portfolio/raw/refs/heads/main/Ballslide.mp4" type="video/mp4"></video></div></div>
+                    <div class="swiper-slide"><div class="animation-card"><video autoplay muted loop playsinline><source src="https://github.com/RitzOzario/portfolio/raw/refs/heads/main/LightBulb_v2.mp4" type="video/mp4"></video></div></div>
+                    <div class="swiper-slide"><div class="animation-card"><video autoplay muted loop playsinline><source src="https://github.com/RitzOzario/portfolio/raw/refs/heads/main/test.mp4" type="video/mp4"></video></div></div>
+                    <div class="swiper-slide"><div class="animation-card"><video autoplay muted loop playsinline><source src="https://github.com/RitzOzario/portfolio/raw/refs/heads/main/Machine_1.mp4" type="video/mp4"></video></div></div>
                 </div>
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
@@ -857,22 +876,26 @@
             <h2>Clients & Brands</h2>
             <div class="clients-carousel-wrapper">
                 <div class="clients-carousel">
-                    <div class="client-logo"><img src="https://via.placeholder.com/150x80?text=Ferrero" alt="Ferrero"></div>
-                    <div class="client-logo"><img src="https://via.placeholder.com/150x80?text=Ooredoo" alt="Ooredoo"></div>
-                    <div class="client-logo"><img src="https://via.placeholder.com/150x80?text=Gulf+Bank" alt="Gulf Bank"></div>
-                    <div class="client-logo"><img src="https://via.placeholder.com/150x80?text=Honda" alt="Honda"></div>
-                    <div class="client-logo"><img src="https://via.placeholder.com/150x80?text=Chevrolet" alt="Chevrolet"></div>
-                    <div class="client-logo"><img src="https://via.placeholder.com/150x80?text=Costa+Coffee" alt="Costa Coffee"></div>
-                    <div class="client-logo"><img src="https://via.placeholder.com/150x80?text=Agility" alt="Agility"></div>
-                    <div class="client-logo"><img src="https://via.placeholder.com/150x80?text=ISRO" alt="ISRO"></div>
-                    <div class="client-logo"><img src="https://via.placeholder.com/150x80?text=Ferrero" alt="Ferrero"></div>
-                    <div class="client-logo"><img src="https://via.placeholder.com/150x80?text=Ooredoo" alt="Ooredoo"></div>
-                    <div class="client-logo"><img src="https://via.placeholder.com/150x80?text=Gulf+Bank" alt="Gulf Bank"></div>
-                    <div class="client-logo"><img src="https://via.placeholder.com/150x80?text=Honda" alt="Honda"></div>
-                    <div class="client-logo"><img src="https://via.placeholder.com/150x80?text=Chevrolet" alt="Chevrolet"></div>
-                    <div class="client-logo"><img src="https://via.placeholder.com/150x80?text=Costa+Coffee" alt="Costa Coffee"></div>
-                    <div class="client-logo"><img src="https://via.placeholder.com/150x80?text=Agility" alt="Agility"></div>
-                    <div class="client-logo"><img src="https://via.placeholder.com/150x80?text=ISRO" alt="ISRO"></div>
+                    <div class="client-logo"><img src="https://github.com/RitzOzario/portfolio/raw/refs/heads/main/logo1.png" alt="alrajhi bank"></div>
+                    <div class="client-logo"><img src="https://github.com/RitzOzario/portfolio/raw/refs/heads/main/logo2.png" alt="BHEL"></div>
+                    <div class="client-logo"><img src="https://github.com/RitzOzario/portfolio/raw/refs/heads/main/logo3.png" alt="Chevrolet"></div>
+                    <div class="client-logo"><img src="https://github.com/RitzOzario/portfolio/raw/refs/heads/main/logo4.png" alt="Costa Coffee"></div>
+                    <div class="client-logo"><img src="https://github.com/RitzOzario/portfolio/raw/refs/heads/main/logo5.png" alt="Ferrero"></div>
+                    <div class="client-logo"><img src="https://github.com/RitzOzario/portfolio/raw/refs/heads/main/logo6.png" alt="Gulf Bank"></div>
+                    <div class="client-logo"><img src="https://github.com/RitzOzario/portfolio/raw/refs/heads/main/logo7.png" alt="HMT"></div>
+                    <div class="client-logo"><img src="https://github.com/RitzOzario/portfolio/raw/refs/heads/main/logo8.png" alt="ISRO"></div>
+                    <div class="client-logo"><img src="https://github.com/RitzOzario/portfolio/raw/refs/heads/main/logo9.png" alt="Lotus"></div>
+                    <div class="client-logo"><img src="https://github.com/RitzOzario/portfolio/raw/refs/heads/main/logo10.png" alt="McDonalds"></div>
+                    <div class="client-logo"><img src="https://github.com/RitzOzario/portfolio/raw/refs/heads/main/logo11.png" alt="NBK"></div>
+                    <div class="client-logo"><img src="https://github.com/RitzOzario/portfolio/raw/refs/heads/main/logo12.png" alt="Tic Tac"></div>
+                    <div class="client-logo"><img src="https://github.com/RitzOzario/portfolio/raw/refs/heads/main/logo13.png" alt="Toyota"></div>
+                    <div class="client-logo"><img src="https://github.com/RitzOzario/portfolio/raw/refs/heads/main/logo14.png" alt="Ferrero Rocher"></div>
+                    <div class="client-logo"><img src="https://github.com/RitzOzario/portfolio/raw/refs/heads/main/logo15.png" alt="Kinder"></div>
+                    <div class="client-logo"><img src="https://github.com/RitzOzario/portfolio/raw/refs/heads/main/logo16.png" alt="Honda"></div>
+					<div class="client-logo"><img src="https://github.com/RitzOzario/portfolio/raw/refs/heads/main/logo17.png" alt="Raffaello"></div>
+					<div class="client-logo"><img src="https://github.com/RitzOzario/portfolio/raw/refs/heads/main/logo18.png" alt="Lexus"></div>
+					<div class="client-logo"><img src="https://github.com/RitzOzario/portfolio/raw/refs/heads/main/logo19.png" alt="Agility"></div>
+					<div class="client-logo"><img src="https://github.com/RitzOzario/portfolio/raw/refs/heads/main/logo20.png" alt="OOREDOO"></div>
                 </div>
             </div>
         </section>
@@ -942,6 +965,17 @@
 
         // Close on Escape
         document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeVideoModal(); closeImageModal(); } });
+		
+		// INFINITE CAROUSEL LOOP
+const carousel = document.querySelector('.clients-carousel');
+const logos = carousel.querySelectorAll('.client-logo');
+
+// Clone all logos and append them for seamless loop
+logos.forEach(logo => {
+    const clone = logo.cloneNode(true);
+    carousel.appendChild(clone);
+});
+		
     </script>
 </body>
 </html>
